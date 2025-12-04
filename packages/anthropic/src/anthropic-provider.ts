@@ -175,18 +175,7 @@ export function createAnthropic(
   provider.tools = anthropicTools;
 
   provider.searchTool = (def: any) => {
-    const built = createSearchToolDefinition(def);
-
-    toolSearchRegistry.register({
-      name: built.name,
-      description: built.query,
-      inputSchema: {},
-      keywords: built.inputExamples?.map(String) ?? [],
-      allowedCallers: built.allowedCallers ?? [],
-      examples: built.inputExamples ?? [],
-    });
-
-    return built;
+    return createSearchToolDefinition(def);
   };
 
   provider.advancedTools = {

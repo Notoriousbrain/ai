@@ -569,14 +569,6 @@ export class AnthropicMessagesLanguageModel implements LanguageModelV3 {
       userSuppliedBetas: await this.getBetasFromHeaders(options.headers),
     });
 
-    // Enable fine-grained tool streaming beta when streaming + enabled
-    const providerToolStreaming =
-      options.providerOptions?.anthropic?.toolStreaming ?? true;
-
-    if (body.stream && providerToolStreaming) {
-      betas.add('fine-grained-tool-streaming-2025-05-14');
-    }
-
     // Extract citation documents for response processing
     const citationDocuments = this.extractCitationDocuments(options.prompt);
 
